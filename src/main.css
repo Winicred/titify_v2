@@ -1,0 +1,60 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #262626;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.titify-sidebar {
+  grid-area: sidebar;
+}
+
+.titify-navbar {
+  grid-area: navbar;
+}
+
+.titify-player {
+  grid-area: player;
+}
+
+.titify-main {
+  grid-area: main;
+}
+
+.main-container {
+  display: grid;
+  grid-template:
+    "sidebar navbar"
+    "sidebar main"
+    "player player";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: min-content 1fr;
+}
+
