@@ -46,9 +46,9 @@ const Sidebar = () => {
                         <div className="flex flex-col gap-3 mt-1">
 
                             {/* list of user's buttons */}
-                            <SidebarItem title="Favorite" path="/favorite" icon={HeartIcon}/>
-                            <SidebarItem title="History" path="/history" icon={BookOpenIcon}/>
-                            <SidebarItem title="Playlists" path="/playlists" icon={BookmarkIcon}/>
+                            <SidebarItem title="Favorite" path={`/favorite/${authStore.user.id}`} icon={HeartIcon}/>
+                            <SidebarItem title="History" path={`/history/${authStore.user.id}`} icon={BookOpenIcon}/>
+                            <SidebarItem title="Playlists" path={`/playlists/${authStore.user.id}`} icon={BookmarkIcon}/>
                             {/* end */}
                         </div>
                     </div>

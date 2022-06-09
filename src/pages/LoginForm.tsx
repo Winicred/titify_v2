@@ -1,6 +1,5 @@
 import {FC, FormEvent, useContext, useRef, useState} from "react";
-import {AuthStoreProps} from "../";
-import {AuthContext} from "../";
+import {AuthContext, AuthStoreProps} from "../";
 import CriticalError from "../components/elements/error/CriticalError";
 
 const LoginForm:FC = () => {
@@ -19,23 +18,34 @@ const LoginForm:FC = () => {
         const username = usernameRef.current!.value;
         const password = passwordRef.current!.value;
 
-        authStore.login(username, password).then( (r) => {
+        authStore.login(username, password).then((r) => {
             console.log(r)
-        }   ).catch( (e) => {
+        }).catch((e) => {
             setError(e.message);
-        }   );
+        });
     }
 
     return (
-        <div>
-            {error && <CriticalError message={error}/>}
+        <div className="flex w-screen h-screen relative">
+            <div className="absolute top-10 left-32 py-4 px-8 flex gap-3 items-center bg-neutral-900/30 select-none rounded-full">
+                <img
+                    src="https://avatars3.githubusercontent.com/u/52709818?s=460&u=f8f8f8f8f8f8f8f8f8f8f8f8f8f8f8f8f8f8f8f8f8&v=4"
+                    width={36}
+                    height={36}
+                    className="rounded-full"
+                    alt={'Titify'}
+                />
 
-            <form onSubmit={handleLogin}>
-                <input type="text" className="text-black" ref={usernameRef}/>
+                <span className="text-2xl font-semibold">Titify</span>
+            </div>
 
-                <input type="password" className="text-black" ref={passwordRef}/>
+            <form onSubmit={handleLogin} className="w-1/3 flex justify-center items-center mx-auto">
+                {error && <CriticalError message={error} onClose={() => setError('')}/>}
 
-                <button type="submit">Login</button>
+                <div>
+                    <span className="text-3xl font-semibold">Sign in</span>
+                    <span className="text-sm text-neutral-400">to continue</span>
+                </div>
             </form>
         </div>
     );

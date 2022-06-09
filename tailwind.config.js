@@ -41,6 +41,9 @@ module.exports = {
       '5xl': {'max': '3840px'},
     },
   },
+  variants: {
+    fill: ['hover', 'focus'],
+  },
   plugins: [],
 
 }

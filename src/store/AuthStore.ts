@@ -4,7 +4,7 @@ import {makeAutoObservable} from "mobx";
 
 export default class AuthStore {
     user = {} as IUser;
-    isAuth = true;
+    isAuth = false;
     isLoading = false;
 
     constructor() {
@@ -26,37 +26,46 @@ export default class AuthStore {
     async login(username: string, password: string) {
         this.setLoading(true);
 
-        try {
-            const response = await AuthService.login(username, password);
+        const response = await AuthService.login(username, password);
 
+        localStorage.setItem('token', response.data.accessToken);
+
+        this.setAuth(true);
+        this.setUser(response.data.user);
+        this.setLoading(false);
+
+        return response.data;
+    }
+
+    async register(credentials: { username: string, email: string, password: string, passwordConfirm: string }) {
+        this.setLoading(true);
+
+        const {username, email, password, passwordConfirm} = credentials;
+        const response = await AuthService.register(username, email, password, passwordConfirm);
+
+        if (response.data.success) {
             localStorage.setItem('token', response.data.accessToken);
 
             this.setAuth(true);
-
             this.setUser(response.data.user);
-
-        } catch (e) {
-            console.error(e);
-        } finally {
             this.setLoading(false);
         }
+
+        return response.data;
     }
 
     async logout() {
         this.setLoading(true);
 
-        try {
-            await AuthService.logout();
+        const response = await AuthService.logout();
 
-            localStorage.removeItem('token');
+        localStorage.removeItem('token');
 
-            this.setAuth(false);
-            this.setUser({} as IUser);
+        this.setAuth(false);
+        this.setUser({} as IUser);
 
-        } catch (e) {
-            console.error(e);
-        } finally {
-            this.setLoading(false);
-        }
+        this.setLoading(false);
+
+        return response!.data;
     }
 }
