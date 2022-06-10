@@ -86,20 +86,39 @@ const RegisterForm = () => {
 
                     <form onSubmit={handleRegister} className="mt-10" autoComplete="on">
                         <div className="flex items-center justify-between gap-10">
-                            <StandardInput placeholder="Username" className="w-1/2" innerRef={usernameRef}
-                                           name="username" error={inputErrors.username}/>
-                            <StandardInput placeholder="Email" className="w-1/2" innerRef={emailRef} name="email" error={inputErrors.email}/>
+                            <StandardInput label="Username"
+                                           type="text"
+                                           autoComplete="username"
+                                           innerRef={usernameRef}
+                                           name="username"
+                                           placeholder="Username"
+                                           error={inputErrors.username}/>
+                            <StandardInput label="Email"
+                                           type="text"
+                                           autoComplete="email"
+                                           innerRef={emailRef}
+                                           name="email"
+                                           placeholder="Email"
+                                           error={inputErrors.email}/>
                         </div>
 
                         <div className="mt-6 flex flex-col gap-6">
-                            <StandardInput type="password" placeholder="Password" innerRef={passwordRef} error={inputErrors.password}/>
-                            <StandardInput type="password" placeholder="Password Confirm" error={inputErrors.passwordConfirm}
-                                           innerRef={passwordConfirmRef}/>
+                            <StandardInput type="password"
+                                           label="Password"
+                                           innerRef={passwordRef}
+                                           placeholder="Password"
+                                           error={inputErrors.password}/>
+                            <StandardInput type="password"
+                                           label="Password Confirm"
+                                           innerRef={passwordConfirmRef}
+                                           placeholder="Password Confirm"
+                                           error={inputErrors.passwordConfirm}
+                            />
                         </div>
 
                         <div className="mt-12 flex justify-center">
                             <button type="submit"
-                                    className={`px-5 py-3 text-neutral-100 rounded-xl transform duration-300 shadow-[0_0_10px_2px_rgb(61,81,250)] disabled:cursor-not-allowed bg-primary-100 hover:brightness-150 active:brightness-110 select-none`}>Create Account</button>
+                                    className="px-5 py-3 text-neutral-100 rounded-xl transform duration-300 shadow-[0_0_10px_2px_rgb(61,81,250)] disabled:cursor-not-allowed bg-primary-100 hover:brightness-150 active:brightness-110 select-none">Create Account</button>
                         </div>
 
                     </form>

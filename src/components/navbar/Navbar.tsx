@@ -19,7 +19,6 @@ const Navbar: FC = () => {
                 </div>
                 <div className="ml-auto">
                 {authStore.isAuth ? (
-
                             <Dropdown>
                                 <Dropdown.Header>
                                     <div
